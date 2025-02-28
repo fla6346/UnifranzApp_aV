@@ -5,12 +5,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen'; // Asegúrate de que la ruta sea correcta
 import DetailsScreen from './screens/DetailsScreen'; // Asegúrate de que la ruta sea correcta
 import SplashScreen from './screens/splash';
+import RegisterU from './screens/RegisterU';
 import Sliders from "./components/slide";
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [isSplashComplete, setIsSplashComplete] = useState(false);
-
+  
   if (!isSplashComplete) {
     return <SplashScreen onFinish={() => setIsSplashComplete(true)} />;
    
@@ -18,12 +19,12 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Details">
         <Stack.Screen 
           name="Details" 
           component={DetailsScreen} 
           options={{ 
-            title: 'Detalles',
+            title: 'Home1',
             headerStyle: {
               backgroundColor: '#e9590c',
             },
@@ -44,6 +45,21 @@ const App = () => {
             },
           }}
         />
+        <Stack.Screen
+        name="Register" 
+          component={RegisterU} 
+          options={{ 
+            title: 'Registro',
+            headerStyle: {
+              backgroundColor: '#e9590c',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}>
+        </Stack.Screen>
+       
          
       </Stack.Navigator>
     </NavigationContainer>
