@@ -102,7 +102,7 @@ const DetailsScreen = ({ navigation }) => {
         <Animated.View style={{ transform: [{ translateY: slideAnim }] }}>
           <BlurView intensity={30} tint="dark" style={styles.buttonContainer}>
             <View style={styles.buttonContainer}>
-              <Button title="Ingresa como invitado" onPress={() => navigation.navigate('Register')}  />
+              <Button title="Ingresa como invitado" onPress={() => navigation.navigate('Home')}  />
             </View>
           </BlurView>
         </Animated.View>
@@ -116,14 +116,14 @@ const DetailsScreen = ({ navigation }) => {
           { Platform.OS === 'ios' ? (
             <BlurView intensity={30} tint="dark" style={styles.buttonBlur}>
               <View style={styles.buttonContainer}>
-                <Button title="Iniciar Sesión" onPress={() => navigation.navigate('Inicio')}  />
-                <Button title="Registrarse" onPress={() => navigation.navigate('RegisterU')} />
+                <Button title="Iniciar Sesión" onPress={() => navigation.navigate('')}  />
+                <Button title="Registrarse" onPress={() => navigation.navigate('Register')} />
               </View>
             </BlurView>
           ) : (
             <View style={styles.buttonContainer}>
-              <Button title="Iniciar Sesión" onPress={() => navigation.navigate('Home')}  />
-              <Button title="Registrarse" onPress={() => {}} />
+              <Button title="Iniciar Sesión" onPress={() => navigation.navigate('')}  />
+              <Button title="Registrarse" onPress={() => navigation.navigate('Register')}  />
             </View>
           )}
         </Animated.View>

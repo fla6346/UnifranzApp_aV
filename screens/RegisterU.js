@@ -62,7 +62,7 @@ export default function Register() {
         style={styles.input}
         secureTextEntry
       />
-      <Button mode="contained" onPress={handleRegister} style={styles.button}>
+      <Button mode="contained" onPress={handleRegister} >
         Registrarse
       </Button>
 
@@ -93,5 +93,10 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 16,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
   },
 });
