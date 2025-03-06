@@ -34,13 +34,12 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {}
-      <LinearGradient
-        colors={['#E45916', '#3949ab']}
+      <View
         style={styles.header}
       >
         <View style={styles.profileContainer}>
           <Image 
-            source={require('../assets/LOGO-FL.png')} 
+            source={require('../assets/logo.jpg')} 
             style={styles.avatar}
           />
           <View >
@@ -54,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.notificationCount}>3</Text>
           </View>
         </TouchableOpacity>
-      </LinearGradient>
+      </View>
       
       <ScrollView style={styles.content}>
         {/* Today's schedule section */}

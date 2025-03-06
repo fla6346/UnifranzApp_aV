@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, View, Text, StyleSheet, Dimensions, Image, ImageBackground } from 'react-native';
+import { Animated, View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
+
 const { width, height } = Dimensions.get('window');
 
 export default function SplashScreen({ onFinish }) {
@@ -30,9 +31,7 @@ export default function SplashScreen({ onFinish }) {
           useNativeDriver: true,
         }),
       ]),
-      
       Animated.delay(1500),
-      
       Animated.timing(fadeAnim, {
         toValue: 0,
         duration: 800,
@@ -46,9 +45,8 @@ export default function SplashScreen({ onFinish }) {
   }, []);
 
   return (
-    <LinearGradient
-      colors={['#ff5733', '#422780']} 
-      style={styles.container}
+    <View
+      style={[styles.container,{backgroundColor:'#E35916'}]}
     >
       <StatusBar hidden />
       <Animated.View
@@ -64,12 +62,12 @@ export default function SplashScreen({ onFinish }) {
         ]}
       >
         <View style={styles.logo}>
-          <Text style={styles.logoText}>MI APP</Text>
           <Image
-            source={require('../assets/LOGO-FL.png')}
-            style={styles.logo}
+            source={require('../assets/logo.jpg')}
+            style={styles.logoImage}
             onError={(error) => console.error('Error loading image', error)}
           />
+          <Text style={styles.logoText}>MI APP</Text>
         </View>
         <Animated.Text
           style={[
@@ -82,15 +80,13 @@ export default function SplashScreen({ onFinish }) {
           Bienvenido a la experiencia
         </Animated.Text>
       </Animated.View>
-    </LinearGradient>
+    </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FF5733',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -98,33 +94,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    backgroundColor: 'white',
+    width: 220,
+    height: 220,
+    backgroundColor: 'white', // Fondo blanco para el logo
+    borderRadius:10,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 16,
+    marginBottom: 10,
     elevation: 8,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
   },
+  logoImage: {
+    width: 130,
+    height: 130,
+  },
   logoText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'black',
   },
   tagline: {
     fontSize: 18,
-    color: 'white',
+    color: 'black',
     fontWeight: '500',
     marginTop: 10,
   },
-  backgroundImage: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  fondo:{
+    backgroundColor: '#E35916',
+  }
 });

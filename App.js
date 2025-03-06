@@ -19,12 +19,12 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Details">
+      <Stack.Navigator>
         <Stack.Screen 
           name="Details" 
           component={DetailsScreen} 
           options={{ 
-            title: 'Home1',
+            title: 'Inicio',
             headerStyle: {
               backgroundColor: '#e9590c',
             },

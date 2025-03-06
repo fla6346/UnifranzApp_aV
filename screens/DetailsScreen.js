@@ -13,13 +13,14 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
+import { transform } from '@babel/core';
 
 const { width, height } = Dimensions.get('window');
 
 const Logo = () => (
   <View style={styles.logoWrapper}>
     <Image
-      source={require('../assets/LOGO-FL.png')}
+      source={require('../assets/logo.jpg')}
       style={styles.logo}
       onError={(error) => console.error('Error loading image', error)}
     />
@@ -29,14 +30,13 @@ const Logo = () => (
 const Button = ({ title, onPress, isPrimary }) => (
   <TouchableOpacity style={isPrimary ? styles.buttonPrimary : styles.buttonSecondary} onPress={onPress}>
     {isPrimary ? (
-      <LinearGradient
-        colors={['#8E2DE2', '#4A00E0']}
+      <View
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={styles.buttonGradient}
       >
         <Text style={styles.buttonTextPrimary} numberOfLines={1}>{title}</Text>
-      </LinearGradient>
+      </View>
     ) : (
       <Text style={styles.buttonTextSecondary} numberOfLines={1}>{title}</Text>
     )}
@@ -74,12 +74,10 @@ const DetailsScreen = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar style="light" />
       <ImageBackground 
-        source={{ uri: 'https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=1000' }}
         style={styles.backgroundImage}
         resizeMode="cover"
       >
-        <LinearGradient
-          colors={['#ff5733', 'rgba(66, 39, 130, 0.92)']}
+        <View
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.gradient}
@@ -100,16 +98,14 @@ const DetailsScreen = ({ navigation }) => {
         </Animated.View>
         
         <Animated.View style={{ transform: [{ translateY: slideAnim }] }}>
-          <BlurView intensity={30} tint="dark" style={styles.buttonContainer}>
+          <BlurView intensity={30} tint="dark" style={styles.buttonBlur}>
             <View style={styles.buttonContainer}>
-              <Button title="Ingresa como invitado" onPress={() => navigation.navigate('Home')}  />
+              <Button title="Ingresa como invitado" onPress={() => navigation.navigate('Home')} isPrimary={true} /> {/* Cambiado a isPrimary={true} */}
             </View>
           </BlurView>
         </Animated.View>
         
-        <Animated.View 
-          style={[
-            styles.buttonContainerWrapper, 
+        <Animated.View style={[styles.buttonContainerWrapper, 
             { transform : [{ translateY: slideAnim }] }
           ]}
         >
@@ -163,12 +159,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: '#fff',
+    color: 'black',
     fontWeight: 'bold',
   },
   subtitle: {
     fontSize: 16,
-    color: '#fff',
+    color: 'black',
   },
   buttonContainerWrapper: {
     position: 'absolute',
@@ -193,7 +189,7 @@ const styles = StyleSheet.create({
   buttonSecondary: {
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#fff',
+    borderColor: 'black',
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -206,11 +202,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonTextPrimary: {
-    color: '#fff',
+    color: 'black',
     fontWeight: 'bold',
   },
   buttonTextSecondary: {
-    color: '#fff',
+    color: 'black',
   },
 });
 
