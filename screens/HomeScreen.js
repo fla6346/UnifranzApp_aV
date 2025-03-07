@@ -158,6 +158,15 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.resourceTitle}>Eventos Pasados</Text>
             </TouchableOpacity>
             
+            <TouchableOpacity style={styles.resourceItem}
+              onPress={()=>navigation.navigate('Usuarios')}
+            >
+              <View style={[styles.resourceIcon, { backgroundColor: '#E91E63' }]}>
+                <FontAwesome5 name="book" size={24} color="white" />
+              </View>
+              <Text style={styles.resourceTitle}>Usuarios</Text>
+            </TouchableOpacity>
+            
             <TouchableOpacity style={styles.resourceItem}>
               <View style={[styles.resourceIcon, { backgroundColor: '#9C27B0' }]}>
                 <FontAwesome5 name="calendar-alt" size={24} color="white" />

@@ -7,9 +7,14 @@ import DetailsScreen from './screens/DetailsScreen'; // Asegúrate de que la rut
 import SplashScreen from './screens/splash';
 import RegisterU from './screens/RegisterU';
 import Sliders from "./components/slide";
+import UsuariosScreen from './screens/UsuariosScreen';
+import axios from 'axios';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const [usuario, setUser] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
   const [isSplashComplete, setIsSplashComplete] = useState(false);
   
   if (!isSplashComplete) {
@@ -59,11 +64,23 @@ const App = () => {
             },
           }}>
         </Stack.Screen>
-       
+        <Stack.Screen 
+          name="Usuarios" 
+          component={UsuariosScreen} 
+          options={{ title: 'Usuarios',
+            headerStyle: {
+              backgroundColor: '#e9590c',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }, }} 
+        />
          
       </Stack.Navigator>
     </NavigationContainer>
   );
+  
 };
 
 export default App;

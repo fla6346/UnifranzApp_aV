@@ -3,40 +3,56 @@ const mysql = require('mysql');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: 'https://69ev8lg-anonymous-8081.exp.direct', // Permitir solo este origen
+  methods: 'GET,POST', // Métodos permitidos
+  allowedHeaders: 'Content-Type,Authorization' // Encabezados permitidos
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root', // Cambia por tu usuario de MySQL
   password: '', // Cambia por tu contraseña de MySQL
-  database: 'bddgestion_eventos', // Cambia por el nombre de tu base de datos
+  database: 'bddgestion_eventosuft', // Cambia por el nombre de tu base de datos
 });
 
 db.connect((err) => {
-  if (err) throw err;
+  if (err) {
+    console.log('Error conectando a la base de datos MySQL:', err);
+    return;
+  }
   console.log('Conectado a la base de datos MySQL');
 });
 
-app.get('/users', (req, res) => {
+// Ruta para obtener todos los usuarios
+app.get('/api/users', (req, res) => {
   const sql = 'SELECT * FROM usuario';
   db.query(sql, (err, result) => {
-    if (err) throw err;
+    if (err) {
+      return res.status(500).json({ error: err });
+    }
     res.json(result);
   });
 });
 
-app.post('/users', (req, res) => {
-  const { name, email } = req.body;
-  const sql = 'INSERT INTO usuario (usuario,contrasenia,habilitado,nombre,apellidoPat,apellidoMat,email) VALUES (?, ?, ?, ?, ?, ?, ?)';
-  db.query(sql, [usuario,contrasenia,habilitado,nombre,apellidoPat,apellidoMat,email], (err, result) => {
-    if (err) throw err;
+// Ruta para agregar un nuevo usuario
+app.post('/api/users', (req, res) => {
+  const { usuario, contrasenia, habilitado, nombre, apellidoPat, apellidoMat, email } = req.body;
+  const sql = 'INSERT INTO usuario (usuario, contrasenia, habilitado, nombre, apellidoPat, apellidoMat, email) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  
+  db.query(sql, [usuario, contrasenia, habilitado, nombre, apellidoPat, apellidoMat, email], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: err }); // Enviar un mensaje de error si hay un problema
+    }
     res.json({ message: 'Usuario agregado correctamente' });
   });
 });
 
 // Iniciar el servidor
-const PORT = 3306;
+const PORT = 3000; // Asegúrate de que este puerto esté disponible
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
