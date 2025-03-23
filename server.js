@@ -1,10 +1,10 @@
-const express = require('express');
+/*const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 
 const app = express();
 const corsOptions = {
-  origin: 'https://69ev8lg-anonymous-8081.exp.direct', // Permitir solo este origen
+  origin: '*', // Permitir solo este origen
   methods: 'GET,POST', // Métodos permitidos
   allowedHeaders: 'Content-Type,Authorization' // Encabezados permitidos
 };
@@ -52,7 +52,11 @@ app.post('/api/users', (req, res) => {
 });
 
 // Iniciar el servidor
-const PORT = 3000; // Asegúrate de que este puerto esté disponible
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+const PORT = 5000; // Asegúrate de que este puerto esté disponible
+const httpsOptions = {
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+};
+https.createServer(httpsOptions, app).listen(PORT, () => {
+  console.log(`Servidor HTTPS corriendo en https://localhost:${PORT}`);
+});*/

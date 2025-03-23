@@ -8,13 +8,9 @@ import SplashScreen from './screens/splash';
 import RegisterU from './screens/RegisterU';
 import Sliders from "./components/slide";
 import UsuariosScreen from './screens/UsuariosScreen';
-import axios from 'axios';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const [usuario, setUser] = useState([]);
-  const [loading, setLoading] = useState(true);
-  
   const [isSplashComplete, setIsSplashComplete] = useState(false);
   
   if (!isSplashComplete) {
@@ -24,12 +20,12 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Details">
         <Stack.Screen 
           name="Details" 
           component={DetailsScreen} 
           options={{ 
-            title: 'Inicio',
+            title: 'Ingreso',
             headerStyle: {
               backgroundColor: '#e9590c',
             },
@@ -64,23 +60,24 @@ const App = () => {
             },
           }}>
         </Stack.Screen>
-        <Stack.Screen 
-          name="Usuarios" 
+        <Stack.Screen
+        name="Usuarios" 
           component={UsuariosScreen} 
-          options={{ title: 'Usuarios',
+          options={{ 
+            title: 'Usuarios',
             headerStyle: {
               backgroundColor: '#e9590c',
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
               fontWeight: 'bold',
-            }, }} 
-        />
+            },
+          }}>
+        </Stack.Screen>
          
       </Stack.Navigator>
     </NavigationContainer>
   );
-  
 };
 
 export default App;

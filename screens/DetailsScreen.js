@@ -13,7 +13,6 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
-import { transform } from '@babel/core';
 
 const { width, height } = Dimensions.get('window');
 
@@ -30,13 +29,14 @@ const Logo = () => (
 const Button = ({ title, onPress, isPrimary }) => (
   <TouchableOpacity style={isPrimary ? styles.buttonPrimary : styles.buttonSecondary} onPress={onPress}>
     {isPrimary ? (
-      <View
+      <LinearGradient
+        colors={['white']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={styles.buttonGradient}
       >
         <Text style={styles.buttonTextPrimary} numberOfLines={1}>{title}</Text>
-      </View>
+      </LinearGradient>
     ) : (
       <Text style={styles.buttonTextSecondary} numberOfLines={1}>{title}</Text>
     )}
@@ -77,7 +77,8 @@ const DetailsScreen = ({ navigation }) => {
         style={styles.backgroundImage}
         resizeMode="cover"
       >
-        <View
+        <LinearGradient
+          colors={['white']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.gradient}
@@ -93,25 +94,30 @@ const DetailsScreen = ({ navigation }) => {
           ]}
         >
           <Logo />
-          <Text style={styles.title}>Mi Aplicación</Text>
+          <Text style={styles.title}>FRANZ CONNECT</Text>
           <Text style={styles.subtitle}>Bienvenido a la experiencia definitiva</Text>
         </Animated.View>
         
-        <Animated.View style={{ transform: [{ translateY: slideAnim }] }}>
-          <BlurView intensity={30} tint="dark" style={styles.buttonBlur}>
+        <Animated.View 
+          style={[
+            styles.buttonContainerWrapper1,
+            {transform: [{ translateY: slideAnim }] }]}>
+          <BlurView   style={styles.buttonContainer}>
             <View style={styles.buttonContainer}>
-              <Button title="Ingresa como invitado" onPress={() => navigation.navigate('Home')} isPrimary={true} /> {/* Cambiado a isPrimary={true} */}
+              <Button title="Ingresa como invitado" onPress={() => navigation.navigate('Home')}  />
             </View>
           </BlurView>
         </Animated.View>
         
-        <Animated.View style={[styles.buttonContainerWrapper, 
+        <Animated.View 
+          style={[
+            styles.buttonContainerWrapper, 
             { transform : [{ translateY: slideAnim }] }
           ]}
         >
           { Platform.OS === 'ios' ? (
-            <BlurView intensity={30} tint="dark" style={styles.buttonBlur}>
-              <View style={styles.buttonContainer}>
+            <BlurView intensity={30} tint="dark" >
+              <View >
                 <Button title="Iniciar Sesión" onPress={() => navigation.navigate('')}  />
                 <Button title="Registrarse" onPress={() => navigation.navigate('Register')} />
               </View>
@@ -153,9 +159,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    width: 100,
-    height: 100,
-    resizeMode: 'contain',
+    borderRadius: 10,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
   },
   title: {
     fontSize: 24,
@@ -173,6 +185,13 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: 'center',
   },
+  buttonContainerWrapper1:{
+    position:'absolute',
+    bottom:200,
+    left:290,
+    right:0,
+    alignItems:'center',
+  },
   buttonBlurContainer: {
     borderRadius: 10,
     overflow: 'hidden',
@@ -189,7 +208,7 @@ const styles = StyleSheet.create({
   buttonSecondary: {
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#e9590c',
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',

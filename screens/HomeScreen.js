@@ -33,10 +33,6 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {}
-      <View
-        style={styles.header}
-      >
         <View style={styles.profileContainer}>
           <Image 
             source={require('../assets/logo.jpg')} 
@@ -53,7 +49,6 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.notificationCount}>3</Text>
           </View>
         </TouchableOpacity>
-      </View>
       
       <ScrollView style={styles.content}>
         {/* Today's schedule section */}
@@ -158,15 +153,6 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.resourceTitle}>Eventos Pasados</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.resourceItem}
-              onPress={()=>navigation.navigate('Usuarios')}
-            >
-              <View style={[styles.resourceIcon, { backgroundColor: '#E91E63' }]}>
-                <FontAwesome5 name="book" size={24} color="white" />
-              </View>
-              <Text style={styles.resourceTitle}>Usuarios</Text>
-            </TouchableOpacity>
-            
             <TouchableOpacity style={styles.resourceItem}>
               <View style={[styles.resourceIcon, { backgroundColor: '#9C27B0' }]}>
                 <FontAwesome5 name="calendar-alt" size={24} color="white" />
@@ -186,6 +172,18 @@ const HomeScreen = ({ navigation }) => {
                 <FontAwesome5 name="graduation-cap" size={24} color="white" />
               </View>
               <Text style={styles.resourceTitle}>Graduaciones</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.resourceItem}>
+              <View style={[styles.resourceIcon, { backgroundColor: '#4CAF50' }]}>
+                <FontAwesome5 name="graduation-cap" size={24} color="white" />
+              </View>
+              <Text style={styles.resourceTitle}>Graduaciones</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.resourceItem} onPress={()=>navigation.navigate('Usuarios')}>
+              <View style={[styles.resourceIcon, { backgroundColor: '#4CAF50' }]}>
+                <FontAwesome5 name="graduation-cap" size={24} color="white" />
+              </View>
+              <Text style={styles.resourceTitle}>Usuarios</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -271,7 +269,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#E45916',
   },
   header: {
     flexDirection: 'row',

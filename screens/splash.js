@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import { Animated, View, Text, StyleSheet, Dimensions, Image, ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
-
 const { width, height } = Dimensions.get('window');
 
 export default function SplashScreen({ onFinish }) {
@@ -31,7 +30,9 @@ export default function SplashScreen({ onFinish }) {
           useNativeDriver: true,
         }),
       ]),
+      
       Animated.delay(1500),
+      
       Animated.timing(fadeAnim, {
         toValue: 0,
         duration: 800,
@@ -45,8 +46,9 @@ export default function SplashScreen({ onFinish }) {
   }, []);
 
   return (
-    <View
-      style={[styles.container,{backgroundColor:'#E35916'}]}
+    <LinearGradient
+      colors={['#ff5733']} 
+      style={styles.container}
     >
       <StatusBar hidden />
       <Animated.View
@@ -64,10 +66,9 @@ export default function SplashScreen({ onFinish }) {
         <View style={styles.logo}>
           <Image
             source={require('../assets/logo.jpg')}
-            style={styles.logoImage}
+            style={styles.logo}
             onError={(error) => console.error('Error loading image', error)}
           />
-          <Text style={styles.logoText}>MI APP</Text>
         </View>
         <Animated.Text
           style={[
@@ -79,14 +80,17 @@ export default function SplashScreen({ onFinish }) {
         >
           Bienvenido a la experiencia
         </Animated.Text>
+          <Text style={styles.logoText}>FRANZ CONNECT</Text>
       </Animated.View>
-    </View>
+    </LinearGradient>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FF5733',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -94,34 +98,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 220,
-    height: 220,
-    backgroundColor: 'white', // Fondo blanco para el logo
-    borderRadius:10,
+    /*width: 120,
+    height: 120,*/
+    borderRadius: 10,
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10,
+    //marginBottom: 16,
     elevation: 8,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
   },
-  logoImage: {
-    width: 130,
-    height: 130,
-  },
   logoText: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: 'white',
   },
   tagline: {
     fontSize: 18,
-    color: 'black',
+    color: 'white',
     fontWeight: '500',
     marginTop: 10,
   },
-  fondo:{
-    backgroundColor: '#E35916',
-  }
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

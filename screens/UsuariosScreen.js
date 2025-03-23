@@ -1,4 +1,3 @@
-// screens/UsuariosScreen.js
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import axios from 'axios';
@@ -10,10 +9,14 @@ const UsuariosScreen = () => {
   useEffect(() => {
     const fetchUsuarios = async () => {
       try {
-        const response = await axios.get('http://10.0.2.2:3000/api/users'); // Cambia localhost por la IP de tu máquina si es necesario
+        const response = await axios.get('http://localhost:5432/usuarios');
         setUsuarios(response.data);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching usuarios:', error.message);
+        if (error.response) {
+          console.error('Response data:', error.response.data);
+          console.error('Response status:', error.response.status);
+        }
       } finally {
         setLoading(false);
       }
@@ -34,7 +37,7 @@ const UsuariosScreen = () => {
         keyExtractor={item => item.id.toString()} // Asegúrate de que 'id' sea un campo único
         renderItem={({ item }) => (
           <View style={styles.userItem}>
-            <Text>{item.nombre}</Text> {/* Cambia 'nombre' por el campo que desees mostrar */}
+            <Text>{item.nombre}</Text>
           </View>
         )}
       />
