@@ -47,7 +47,7 @@ export default function SplashScreen({ onFinish }) {
 
   return (
     <LinearGradient
-      colors={['#ff5733', '#422780']} 
+      colors={['#ff5733']} 
       style={styles.container}
     >
       <StatusBar hidden />
@@ -64,9 +64,8 @@ export default function SplashScreen({ onFinish }) {
         ]}
       >
         <View style={styles.logo}>
-          <Text style={styles.logoText}>MI APP</Text>
           <Image
-            source={require('../assets/LOGO-FL.png')}
+            source={require('../assets/logo.jpg')}
             style={styles.logo}
             onError={(error) => console.error('Error loading image', error)}
           />
@@ -81,6 +80,7 @@ export default function SplashScreen({ onFinish }) {
         >
           Bienvenido a la experiencia
         </Animated.Text>
+          <Text style={styles.logoText}>FRANZ CONNECT</Text>
       </Animated.View>
     </LinearGradient>
   );
@@ -98,13 +98,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    /*width: 120,
+    height: 120,*/
+    borderRadius: 10,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 16,
+    //marginBottom: 16,
     elevation: 8,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
   },
   tagline: {
     fontSize: 18,

@@ -19,7 +19,7 @@ const { width, height } = Dimensions.get('window');
 const Logo = () => (
   <View style={styles.logoWrapper}>
     <Image
-      source={require('../assets/LOGO-FL.png')}
+      source={require('../assets/logo.jpg')}
       style={styles.logo}
       onError={(error) => console.error('Error loading image', error)}
     />
@@ -30,7 +30,7 @@ const Button = ({ title, onPress, isPrimary }) => (
   <TouchableOpacity style={isPrimary ? styles.buttonPrimary : styles.buttonSecondary} onPress={onPress}>
     {isPrimary ? (
       <LinearGradient
-        colors={['#8E2DE2', '#4A00E0']}
+        colors={['white']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={styles.buttonGradient}
@@ -74,12 +74,11 @@ const DetailsScreen = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar style="light" />
       <ImageBackground 
-        source={{ uri: 'https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=1000' }}
         style={styles.backgroundImage}
         resizeMode="cover"
       >
         <LinearGradient
-          colors={['#ff5733', 'rgba(66, 39, 130, 0.92)']}
+          colors={['white']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.gradient}
@@ -95,12 +94,15 @@ const DetailsScreen = ({ navigation }) => {
           ]}
         >
           <Logo />
-          <Text style={styles.title}>Mi Aplicación</Text>
+          <Text style={styles.title}>FRANZ CONNECT</Text>
           <Text style={styles.subtitle}>Bienvenido a la experiencia definitiva</Text>
         </Animated.View>
         
-        <Animated.View style={{ transform: [{ translateY: slideAnim }] }}>
-          <BlurView intensity={30} tint="dark" style={styles.buttonContainer}>
+        <Animated.View 
+          style={[
+            styles.buttonContainerWrapper1,
+            {transform: [{ translateY: slideAnim }] }]}>
+          <BlurView   style={styles.buttonContainer}>
             <View style={styles.buttonContainer}>
               <Button title="Ingresa como invitado" onPress={() => navigation.navigate('Home')}  />
             </View>
@@ -114,8 +116,8 @@ const DetailsScreen = ({ navigation }) => {
           ]}
         >
           { Platform.OS === 'ios' ? (
-            <BlurView intensity={30} tint="dark" style={styles.buttonBlur}>
-              <View style={styles.buttonContainer}>
+            <BlurView intensity={30} tint="dark" >
+              <View >
                 <Button title="Iniciar Sesión" onPress={() => navigation.navigate('')}  />
                 <Button title="Registrarse" onPress={() => navigation.navigate('Register')} />
               </View>
@@ -157,18 +159,24 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    width: 100,
-    height: 100,
-    resizeMode: 'contain',
+    borderRadius: 10,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
   },
   title: {
     fontSize: 24,
-    color: '#fff',
+    color: 'black',
     fontWeight: 'bold',
   },
   subtitle: {
     fontSize: 16,
-    color: '#fff',
+    color: 'black',
   },
   buttonContainerWrapper: {
     position: 'absolute',
@@ -176,6 +184,13 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+  },
+  buttonContainerWrapper1:{
+    position:'absolute',
+    bottom:200,
+    left:290,
+    right:0,
+    alignItems:'center',
   },
   buttonBlurContainer: {
     borderRadius: 10,
@@ -193,7 +208,7 @@ const styles = StyleSheet.create({
   buttonSecondary: {
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#fff',
+    borderColor: '#e9590c',
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -206,11 +221,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonTextPrimary: {
-    color: '#fff',
+    color: 'black',
     fontWeight: 'bold',
   },
   buttonTextSecondary: {
-    color: '#fff',
+    color: 'black',
   },
 });
 

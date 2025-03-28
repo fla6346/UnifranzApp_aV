@@ -7,6 +7,7 @@ import DetailsScreen from './screens/DetailsScreen'; // Asegúrate de que la rut
 import SplashScreen from './screens/splash';
 import RegisterU from './screens/RegisterU';
 import Sliders from "./components/slide";
+import UsuariosScreen from './screens/UsuariosScreen';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
           name="Details" 
           component={DetailsScreen} 
           options={{ 
-            title: 'Home1',
+            title: 'Ingreso',
             headerStyle: {
               backgroundColor: '#e9590c',
             },
@@ -59,7 +60,20 @@ const App = () => {
             },
           }}>
         </Stack.Screen>
-       
+        <Stack.Screen
+        name="Usuarios" 
+          component={UsuariosScreen} 
+          options={{ 
+            title: 'Usuarios',
+            headerStyle: {
+              backgroundColor: '#e9590c',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}>
+        </Stack.Screen>
          
       </Stack.Navigator>
     </NavigationContainer>

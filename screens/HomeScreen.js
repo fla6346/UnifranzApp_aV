@@ -33,14 +33,9 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {}
-      <LinearGradient
-        colors={['#E45916', '#3949ab']}
-        style={styles.header}
-      >
         <View style={styles.profileContainer}>
           <Image 
-            source={require('../assets/LOGO-FL.png')} 
+            source={require('../assets/logo.jpg')} 
             style={styles.avatar}
           />
           <View >
@@ -54,7 +49,6 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.notificationCount}>3</Text>
           </View>
         </TouchableOpacity>
-      </LinearGradient>
       
       <ScrollView style={styles.content}>
         {/* Today's schedule section */}
@@ -179,6 +173,18 @@ const HomeScreen = ({ navigation }) => {
               </View>
               <Text style={styles.resourceTitle}>Graduaciones</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.resourceItem}>
+              <View style={[styles.resourceIcon, { backgroundColor: '#4CAF50' }]}>
+                <FontAwesome5 name="graduation-cap" size={24} color="white" />
+              </View>
+              <Text style={styles.resourceTitle}>Graduaciones</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.resourceItem} onPress={()=>navigation.navigate('Usuarios')}>
+              <View style={[styles.resourceIcon, { backgroundColor: '#4CAF50' }]}>
+                <FontAwesome5 name="graduation-cap" size={24} color="white" />
+              </View>
+              <Text style={styles.resourceTitle}>Usuarios</Text>
+            </TouchableOpacity>
           </View>
         </View>
         
@@ -263,7 +269,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#E45916',
   },
   header: {
     flexDirection: 'row',

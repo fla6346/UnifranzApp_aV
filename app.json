@@ -11,6 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "extra":{
+      "apiUrl":"http://backend:5000"
+    },
     "ios": {
       "supportsTablet": true
     },
