@@ -1,4 +1,4 @@
-FROM  node:20-alphine3.20
+FROM  node:20-alpine
 
 WORKDIR /app
 
@@ -6,8 +6,10 @@ COPY package*.json .
 
 RUN npm install 
 
+RUN npm install -g @expo/ngrok  
+
 COPY . .
 
-EXPOSE 5173
+EXPOSE 8081
 
-CMD ["npm","start","dev"]
+CMD ["npx", "expo","--tunnel"]
